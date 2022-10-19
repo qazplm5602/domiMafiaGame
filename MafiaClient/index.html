@@ -31,8 +31,10 @@
     <script>
         $(function(){
             // Intro.init();
+            // 서버 자동 연결
             Intro.ServerConnecting();
             setTimeout(() => {
+                // 자동으로 준비 버튼름누름
                 $("#lobby-ready").trigger("click");
             }, 100);
         });
