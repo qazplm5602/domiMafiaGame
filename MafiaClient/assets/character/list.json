@@ -1,0 +1,27 @@
+{
+    "mafia":{
+        "name":"마피아",
+        "icon":"jpg",
+        "explanation":"밤마다 사살을 시킬 수 있다. 의심되지 않게 조심히 플레이 하자."
+    },
+    "police":{
+        "name":"경찰",
+        "icon":"svg",
+        "explanation":"밤마다 수사를 할 수 있다. 하지만 우회를 하여 수사를 빠져나갈 수 있기에 잘 추리하자."
+    },
+    "doctor":{
+        "name":"의사",
+        "icon":"jpg",
+        "explanation":"마피아가 죽일 것같은 사람을 살리면 된다. 아무것도 모르겠으면 그냥 자기자신을 살리자."
+    },
+    "worker":{
+        "name":"노동자",
+        "icon":"png",
+        "explanation":"시민과 똑같지만 돈버는건 쉽다. 일당을 1.5배로 더 준다."
+    },
+    "citizen":{
+        "name":"시민",
+        "icon":"svg",
+        "explanation":"그냥 선량한 시민이다. 열심히 돈벌자."
+    }
+}

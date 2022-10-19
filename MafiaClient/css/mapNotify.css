@@ -1,0 +1,51 @@
+#mapNotify-main {
+    position: fixed;
+    
+    left: 60px;
+    bottom: 60px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    width: 250px;
+    height: max-content;
+}
+
+#mapNotify-main > div {
+    position: relative;
+
+    width: 100%;
+    height: max-content;
+
+    padding: 8px;
+    box-sizing: border-box;
+
+    border-radius: 3px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 50%,rgba(0, 0, 0, 0.50) 90%,rgba(0, 0, 0, 0.2) 100%);
+
+    opacity: 0;
+
+    transition: opacity 250ms, transform 250ms;
+}
+
+#mapNotify-main > div:not(:first-child) {
+    margin-top: 2px;
+}
+
+#mapNotify-main > div > .mapNotify-title {
+    font-family: 'SpoqaHanSansNeo-Bold';
+    font-size: 11pt;
+    margin-bottom: 0px;
+    color: white;
+}
+
+#mapNotify-main > div > .mapNotify-content {
+    width: 100%;
+    height: max-content;
+
+    word-break: break-all;
+
+    font-size: 10pt;
+    color: #bdbdbd;
+}
