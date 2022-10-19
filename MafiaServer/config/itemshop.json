@@ -1,0 +1,29 @@
+{
+    "chicken":{
+        "price":1900
+    },
+    "chatblock": {
+        "price":50000,
+        "limit":"mafia"
+    },
+    "deahocity": {
+        "price":0
+    },
+    "timeReduction":{
+        "price":4512,
+        "limit":"mafia"
+    },
+    "casino":{
+        "price":0
+    },
+    "chatpeep":{
+        "price":5000
+    },
+    "hacking":{
+        "price":98652,
+        "limit":"mafia"
+    },
+    "copyplayer":{
+        "price":215887
+    }
+}
