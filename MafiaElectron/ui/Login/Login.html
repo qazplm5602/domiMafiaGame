@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/Header.css">
+    <link rel="stylesheet" href="./css/Login.css">
+    <script>
+        if (typeof module === 'object') {window.module = module; module = undefined;}
+    </script>
+    <script src="./js/jquery-latest.min.js"></script>
+    <script>if (window.module) module = window.module;</script>
+    <script defer src="./js/window_button.js"></script>
+    <script src="./js/login.js"></script>
+    <title>domi Luncher Login</title>
+</head>
+<body>
+    <!-- 상단바 -->
+    <header>
+        <div class="windowButtons-box">
+            <button id="window_minimize"></button>
+            <button id="window_close"></button>
+        </div>
+    </header>
+
+    <!-- 로그인 메뉴 -->
+    <div class="login-main">
+        <div class="login-box">
+            <img class="login-logo" src="https://domi.kr/img/logo.png" alt="domiLogo">
+            <div class="login-title">로그인</div>
+            
+            <!-- 입력 -->
+            <input type="text" onkeyup="Login.updateLoginText()" onKeypress="javascript:if(event.keyCode==13) Login.LoginStart()" placeholder="아이디" id="login-id">
+            <input type="password" onkeyup="Login.updateLoginText()" onKeypress="javascript:if(event.keyCode==13) Login.LoginStart()" placeholder="비밀번호" id="login-password">
+
+            <!-- 오류 텍스트 -->
+            <div class="login-error" style="display: none;">비밀번호가 일치 하지 않습니다.</div>
+
+            <!-- 로그인 버튼 -->
+            <button id="login-start">로그인</button>
+        </div>
+    </div>
+    <!-- 로그인 진행중... -->
+    <div class="login-ing">
+        <img src="https://domi.kr/img/logo.png">
+        <div class="title"><span id="login-name">unkowun</span>님, 환영합니다.</div>
+    </div>
+</body>
+</html>

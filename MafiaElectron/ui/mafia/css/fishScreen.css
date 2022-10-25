@@ -1,0 +1,275 @@
+#minigame-fish {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+}
+
+#minigame-fish > #minigame-fish-space {
+    position:fixed;
+    transform: translate(-50%,-50%);
+    width: 500px;
+    height: 1000px;
+    top: 50%;
+    left: 40%;
+    display: none;
+}
+
+#minigame-fish > #minigame-fish-space > .minigame-fish-space-text {
+    position:fixed;
+    color: rgb(0, 0, 0);
+    background: white;
+    padding: 5px 10px;
+    width: 70px;
+    height: 23px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #000;
+    font-size:20;
+    font-weight: 600;
+    line-height: 23px;
+    text-align:center;
+    top: 39%;
+    left: 72%;
+    letter-spacing: 3px;
+    transform: translate(-50%,-50%);
+}
+
+#minigame-fish > #minigame-fish-space.domiparmotion {
+    animation-name: domiparmotion;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    left: 50%;
+}
+#minigame-fish > #minigame-fish-space.domiparmotioncut {
+    animation-name: domiparmotioncut;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes domiparmotion {
+    from {
+        left: 40%;
+    }
+    to {
+        left: 50%;
+    }
+}
+@keyframes domiparmotioncut {
+    from {
+        left: 50%;
+    }
+    to {
+        left: 40%;
+    }
+}
+
+#minigame-fish > #minigame-fish-space > .minigame-fish-outerdiv {
+    background: radial-gradient(ellipse at center, rgba(134,190,191,1) 0%,rgba(101,139,146,1) 100%);
+    width: 15px;
+    height: 28%;
+    top:50%;
+    left: 58%;
+    z-index: 1;
+    border-style: solid;
+    border-color: #1f2f3a;
+    box-shadow: 0px 0px 2px rgb(109, 158, 167);
+    border-width: 1px;
+    border-radius: 3px;
+    transform: translate(-50%,-50%) rotate(-180deg);
+    position:fixed;
+}
+
+#minigame-fish > #minigame-fish-space > .minigame-fish-outerdiv > .minigame-fish-line {
+    position:absolute;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px 5px;
+    color: #6635ce;
+    width: 25px;
+    height: 2px;
+    top: 85%;
+    margin-left: -5px;
+    z-index: 4;
+}
+
+#minigame-fish > #minigame-fish-space > .minigame-fish-outerdiv > .minigame-fish-innerdiv {
+    background-color: rgba(255, 255, 255, 0.95);
+    z-index: 2;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    height: 20%;
+    width: 100%;
+    margin-left: -1px;
+    margin-top: -1px;
+}
+
+/* 입력 키 패널 */
+
+#minigame-fish-key_main {
+    position:fixed;
+    transform: translate(-50%,-50%);
+    width: 300px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    display: none;
+}
+
+#minigame-fish-key_main .title {
+    font-weight: 600;
+    text-align: center;
+    color: white;
+    margin-bottom: 10px;
+}
+
+/* 키 */
+#minigame-fish-key_main .minigame-fish-key_box {
+    position: relative;
+    width: 100%;
+    height: 65px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 3px;
+    display: flex;
+}
+
+#minigame-fish-key_main .minigame-fish-key_box ul {
+    width: 50px;
+    height: 100%;
+    line-height: 65px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+
+    padding: 0;
+    margin: 0;
+}
+
+/* 키 2 */
+#minigame-fish-key_main .minigame-fish-key_box_2 {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+#minigame-fish-key_main .minigame-fish-key_box_2 ul {
+    width: 50px;
+    height: 100%;
+    line-height: 65px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 35px;
+    color: white;
+    opacity: 0;
+    text-shadow: 0 0 10px white;
+}
+
+#minigame-fish-key_main .minigame-fish-time_bar {
+    width: 100%;
+    height: 8px;
+    background-color: white;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+}
+
+/* 키 토글 효과 */
+
+#minigame-fish-key_main.domishow {
+    animation-name: showmian;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    transform: translate(-50%,-50%) scale(1);
+}
+@keyframes showmian {
+    from {
+        transform: translate(-50%,-50%) scale(1.2);
+    }
+    to {
+        transform: translate(-50%,-50%) scale(1);
+    }
+}
+#minigame-fish-key_main.domicut {
+    animation-name: cutmian;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    transform: translate(-50%,-50%) scale(1.2);
+}
+@keyframes cutmian {
+    from {
+        transform: translate(-50%,-50%) scale(1);
+    }
+    to {
+        transform: translate(-50%,-50%) scale(1.2);
+    }
+}
+
+/* 대기 */
+#minigame-fish > #minigame-fish-wait_fish {
+    position: fixed;
+    transform: translate(-50%,-50%) scale(1.2);
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    background-color: rgba(0, 0, 0, 0.65);
+    padding: 5px 8px;
+    color: white;
+    border-radius: 5px;
+    transition: 300ms !important;
+}
+
+#minigame-fish > #minigame-fish-wait_fish > kbd {
+    background: white;
+    color: black;
+    padding: 0 5px;
+    border-radius: 3px;
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+#minigame-fish > #minigame-fish-wait_fish > .wait_fish-box {
+    position: absolute;
+
+    top: -10px;
+    left: 50%;
+
+    transform: translate(-50%,-100%);
+
+    width: 130px;
+    height: 130px;
+
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.65);
+
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+#minigame-fish > #minigame-fish-wait_fish > .wait_fish-box > .wait_fish-img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    opacity: 0.4;
+
+    animation: rotate_fishing 10s infinite linear;
+}
+
+@keyframes rotate_fishing {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}

@@ -1,0 +1,51 @@
+header {
+    position: fixed;
+    width: 100%;
+    height: 25px;
+    background: transparent;
+    display: flex;
+    justify-content: flex-end;
+    -webkit-app-region: drag;
+    z-index: 9999;
+}
+
+header .windowButtons-box {
+    display: flex;
+    width: max-content;
+    height: 100%;
+    -webkit-app-region: no-drag;
+}
+
+header .windowButtons-box button {
+    border: none;
+    background: transparent;
+    outline: none;
+    image-rendering: -webkit-optimize-contrast;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    background-position: center;
+
+    width: 30px;
+    height: 100%;
+}
+
+header .windowButtons-box #window_close {
+    background-image: url("../image/close_button.png");
+}
+
+header .windowButtons-box #window_close:hover {
+    background-color: rgb(230, 47, 47);
+}
+
+header .windowButtons-box #window_minimize {
+    background-image: url("../image/minsize_button.png");
+    background-position: bottom;
+}
+
+header .windowButtons-box #window_minimize:hover {
+    background-color: rgba(196, 181, 181, 0.3);
+}

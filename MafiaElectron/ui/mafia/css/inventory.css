@@ -1,0 +1,115 @@
+#inventory-main {
+    position: fixed;
+
+    width: 444px;
+    height: 80vh;
+    max-height: 600px;
+
+    top: 50%;
+    left: 100px;
+    transform: translate(0,-50%);
+
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, .8);
+
+    box-sizing: border-box;
+    
+    padding: 5px 8px;
+    padding-left: 10px;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+#inventory-main > .inventory-title {
+    color: white;
+    font-size: 16px;
+    font-family: 'SpoqaHanSansNeo-Bold';
+}
+
+#inventory-main > .inventory-list {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 23px - 31px - 10px);
+
+    margin-top: 5px;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+#inventory-main > .inventory-list > div {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    
+    background: rgba(255, 255, 255, 0.1);
+
+    margin-bottom: 3px;
+    margin-right: 3px;
+}
+
+#inventory-main > .inventory-list > div > img {
+    width: 100%;
+    height: 100%;
+}
+
+#inventory-main > .inventory-list > div:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+#inventory-main > .inventory-list > div > span {
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+
+    color: white;
+    background: rgba(0, 0, 0, 0.8);
+
+    font-size: 13px;
+    
+    padding: 0 5px;
+}
+
+#inventory-main > .inventory-close { 
+    position: absolute;
+    color: white;
+    display: inline;
+    border-radius: 2px;
+    padding: 6px 16px;
+    background-color: rgba(100, 100, 100, 0.8);
+    border: none;
+    cursor: pointer;
+
+    right: 6px;
+    bottom: 6px;
+}
+
+#inventory-main > .inventory-close:hover {
+    background-color: rgba(80, 80, 80, 0.8);
+}
+
+#inventory-main > .inventory-list > .inventory-use {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    transform: translate(100%,50%);
+
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    background: white;
+    border: none;
+    border-radius: 30px;
+    padding: 3px 10px;
+
+    word-break: keep-all;
+
+    font-family: 'SpoqaHanSansNeo-Bold';
+    font-size: 15px;
+
+    cursor: pointer;
+
+    display: none;
+}

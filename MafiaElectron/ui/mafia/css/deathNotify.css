@@ -1,0 +1,55 @@
+#death-notify {
+    position: fixed;
+
+    width: 600px;
+    height: max-content;
+
+    top: 80px;
+    left: 50%;
+    transform: translate(-50%,0);
+
+    display: none;
+}
+
+#death-notify > .death-img {
+    width: 80px;
+    height: auto;
+
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    
+    border-radius: 50%;
+
+    display: block;
+    margin: 0 auto;
+    
+    margin-bottom: 10px;
+}
+
+#death-notify > div {
+    text-align: center;
+    font-family: 'SpoqaHanSansNeo-Bold';
+}
+
+#death-notify > .death-title {
+    color: rgb(240, 52, 52);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    font-size: 35px;
+}
+
+#death-notify > .death-subtext {
+    font-size: 20px;
+    line-height: 18px;
+
+    width: max-content;
+
+    color: white;
+    
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
+
+    padding: 5px;
+}

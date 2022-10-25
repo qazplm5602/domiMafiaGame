@@ -1,0 +1,86 @@
+#intro-screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    background: url("../assets/intro/mafiabackground.jpg") no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    display: none;
+}
+
+#intro-screen > #intro-progress-text {
+    position: absolute;
+
+    color: rgba(255,255,255,1);
+
+    left: 50%;
+    bottom: 30px;
+
+    transform: translate(-50%,0);
+
+    font-size: 1.5vw;
+    font-family: 'SpoqaHanSansNeo-Bold';
+
+    animation: intro-bumping 1s  infinite alternate;
+}
+
+@keyframes intro-bumping {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.5;
+    }
+}
+
+#intro-screen > .intro-buttons {
+    position: absolute;
+
+    right: 25px;
+    bottom: 30px;
+
+    display: flex;
+}
+
+#intro-screen > .intro-buttons > button {
+    width: max-content;
+    height: 40px;
+    padding: 0 10px;
+
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: gray;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 3px;
+
+    box-shadow:  0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#intro-screen > .intro-buttons > button > span {
+    color: white;
+    margin-left: 10px;
+}
+
+#intro-screen > .intro-buttons > button:first-child {
+    margin-right: 10px;
+}
+
+/* 색상 */
+#intro-screen > .intro-buttons > button.orange {
+    background: rgb(221, 115, 16);
+}
+#intro-screen > .intro-buttons > button.red {
+    background: rgb(177, 26, 26);
+}
+
+#intro-screen > .intro-buttons > button > img {
+    fill: color;
+    width: 25px;
+}

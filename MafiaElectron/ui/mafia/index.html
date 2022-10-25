@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+    if (typeof module === 'object') 
+    {window.module = module;module = undefined;}
+    </script>
+    <script src="./utils/jquery-latest.min.js"></script>
+    <script src="./utils/jquery-ui.min.js"></script>
+    <script>if (window.module) module = window.module;</script>
+    <script src="./js/utils.js"></script>
+    <script src="./js/keymanager.js"></script>
+    <script src="./js/websocket.js"></script>
+    <script src="./js/intro.js"></script>
+    <script src="./js/lobby.js"></script>
+    <script src="./js/Lobbychat.js"></script>
+    <script src="./js/GameMain.js"></script>
+    <script src="./js/GameMain-chat.js"></script>
+    <script src="./js/GameMain-time.js"></script>
+    <script src="./js/GameMain-workNpc.js"></script>
+    <script src="./js/minigame-fishing.js"></script>
+    <script src="./js/vote-screen.js"></script>
+    <script src="./js/deathNotify.js"></script>
+    <script src="./js/gameresult.js"></script>
+    <script src="./js/itemshop.js"></script>
+    <script src="./js/inventory.js"></script>
+    <script src="./js/mapNotify.js"></script>
+    <script src="./js/itemFunction.js"></script>
+
+    <!-- TEST -->
+    <script>
+        $(function(){
+            // Intro.init();
+            // Intro.ServerConnecting();
+            // setTimeout(() => {
+            //     $("#lobby-ready").trigger("click");
+            // }, 100);
+        });
+    </script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./utils/jquery-ui.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/intro.css">
+    <link rel="stylesheet" href="./css/disconnectScreen.css">
+    <link rel="stylesheet" href="./css/Lobby.css">
+    <link rel="stylesheet" href="./css/gamemain.css">
+    <link rel="stylesheet" href="./css/work-npc.css">
+    <link rel="stylesheet" href="./css/fishScreen.css">
+    <link rel="stylesheet" href="./css/voteScreen.css">
+    <link rel="stylesheet" href="./css/deathNotify.css">
+    <link rel="stylesheet" href="./css/gameresult.css">
+    <link rel="stylesheet" href="./css/itemshop.css">
+    <link rel="stylesheet" href="./css/inventory.css">
+    <link rel="stylesheet" href="./css/mapNotify.css">
+
+    <title>domiMafia GameClient (Pre-Alpha)</title>
+</head>
+<body>
+    <!-- 게임 메인 -->
+    <div id="gamemain-screen">
+            <!-- 상단바 -->
+        <header class="gamemain-header">
+            <!-- 버튼들 -->
+            <section class="gamemain-header-buttons">
+                <button onclick="itemshop.show()">상점</button>
+                <button onclick="inventory.show()">인벤토리</button>
+                <button onclick="workNPC.show()">일자리</button>
+            </section>
+            <!-- 남은시간 -->
+            <div class="gamemain-header-count">
+                <span>밤이 되기까지 남은시간</span>
+                <span id="timeout-count">10:00</span>
+            </div>
+            <!-- 돈 및 직업표시 -->
+            <section class="gamemain-header-info">
+                <div id="userinfo-money"><span class="money">현금</span>100,000원</div>
+                <div id="userinfo-job"><span>직업</span>마피아</div>
+            </section>
+        </header>
+
+        <section style="position: relative; display: flex; width: 100%; height: calc(100% - 61px);">
+            <section class="gamemain-players">
+                <div class="gamemain-player" id="gamemain-player-domi">
+                    <div class="gamemain-player-chatbox"><span>나인바보</span></div>
+                    <img class="gamemain-player-avater" src="./assets/logo/domi.png">
+                    <div class="gamemain-player-name">도미</div>
+                    <textarea placeholder="메모"></textarea>
+                </div>
+                <div class="gamemain-player">
+                    <img class="gamemain-player-avater" src="./assets/logo/domi.png">
+                    <div class="gamemain-player-name">도오오오오오오오오오오옹미</div>
+                    <textarea placeholder="메모"></textarea>
+                </div>
+                <div class="gamemain-player">
+                    <img class="gamemain-player-avater" src="./assets/logo/domi.png">
+                    <div class="gamemain-player-name">도오오오오오오오오오오옹미</div>
+                    <textarea placeholder="메모"></textarea>
+                </div>
+            </section>
+
+            <div class="gamemain-chat-main">
+                <div class="gamemain-chat-label"><img src="./assets/gameMain/chat/chat-icon.svg">채팅</div>
+                <div class="gamemain-chat-box">
+                    <section class="gamemain-chat-list">
+                        <div class="basic"><span>도미</span>ㄴ와ㅓㅣㅁㄴ오ㅑㅐㅁㄴ오ㅓㅁㄴ와ㅓㅁㅇ놤ㄴ아ㅓㅗㅇㄴ마ㅓㅜㅁㄴ와ㅓㅁ</div>
+                        <div class="stiker">
+                            <img src="./assets/gameMain/chat/police/searchIcon.svg">
+                            <span>경찰조사에 <span style="color :#00A500; font-family: 'SpoqaHanSansNeo-Bold';">성공</span>하였습니다!</span>
+                            <!-- <span>경찰조사에 <span style="color :#c82020; font-family: 'SpoqaHanSansNeo-Bold';">실패</span>하였습니다!</span> -->
+                        </div>
+                    </section>
+
+                    <input class="gamemain-chat-input" placeholder="채팅" type="text">
+                </div>
+            </div>
+        </section>
+
+
+        <div class="gamemain-jobcard">
+            <img src="./assets/character/avatar/mafia.jpg">
+            <div class="gamemain-jobcard-name">--</div>
+            <div class="gamemain-jobcard-subtext">--</div>
+        </div>
+
+    </div>
+
+    <!-- 상점 -->
+    <div id="itemshop-main">
+        <header class="itemshop-header">
+            <div class="itemshop-header-title">상점</div>
+            <section class="itemshop-header-menu">
+                <button data-menu="citizen">시민</button>
+                <button data-menu="police">경찰</button>
+                <button data-menu="doctor">의사</button>
+                <button data-menu="mafia">마피아</button>
+            </section>
+            <img class="itemshop-header-close" src="./assets/itemshop/close.svg">
+        </header>
+
+        <div class="itemshop-content"></div>
+
+        <div class="itemshop-checkbuy" style="display: none;">
+            <div class="itemshop-checkbuy-title">--</div>
+            <section class="itemshop-checkbuy-buttons">
+                <button class="buy">구매</button>
+                <button class="close">취소</button>
+            </section>
+        </div>
+
+        <section class="itemshop-notify"></section>
+    </div>
+
+    <div id="inventory-main" style="display: none;">
+        <div class="inventory-title">인벤토리</div>
+
+        <section class="inventory-list">
+            <div class="itemshop-itemlist-item" data-id="chicken" data-name="닭다뤼" data-explain="맛있겠다.">
+                <img class="itemshop-itemlist-item-icon" src="./assets/Items/chicken.png">
+                <span>5</span>
+            </div>
+            <div class="itemshop-itemlist-item" data-name="닭다뤼" data-explain="맛있겠다.">
+                <img class="itemshop-itemlist-item-icon" src="./assets/Items/chicken.png">
+                <span>5</span>
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="itemshop-itemlist-item" data-name="닭다뤼" data-explain="맛있겠다.">
+                <img class="itemshop-itemlist-item-icon" src="./assets/Items/chicken.png">
+                <span>5</span>
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="itemshop-itemlist-item" data-name="닭다뤼" data-explain="맛있겠다.">
+                <img class="itemshop-itemlist-item-icon" src="./assets/Items/chicken.png">
+                <span>5</span>
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        <button class="inventory-use">사용하기</button>
+        </section>
+
+
+        <button class="inventory-close" onclick="inventory.close()">닫기</button>
+    </div>
+
+    <div id="itemshop-helpbox">
+        <section class="itemshop-helpbox-iteminfo">
+            <img class="itemshop-helpbox-iteminfo-img" src="./assets/Items/chicken.png">
+            <div class="itemshop-helpbox-iteminfo-texts">
+                <span class="skillT">스킬</span>
+                <span class="nameT">닭다리봉</span>
+            </div>
+        </section>
+
+        <div class="itemshop-helpbox-explain">이 div태그는 스킬 설명을 넣는 곳입니다.</div>
+    </div>
+
+    <!-- NPC -->
+    <div id="work-npc-main">
+        <img class="work-npc-avatar" src="./assets/NPC/Tom_Nook_NH.png">
+        <div class="work-npc-box">
+            <div class="work-npc-name">너굴사장</div>
+            <div class="work-npc-content">일자리 알아보고있어 구리?</div>
+            <section class="work-npc-buttons">
+                <button>광물캐기</button>
+                <button onclick="workNPC.onFishiButton()">낚시하기</button>
+                <button onclick="workNPC.hide()">닫기</button>
+            </section>
+        </div>
+    </div>
+
+    <!-- 미니게임 낚시 -->
+    <div id="minigame-fish">
+        <div id="minigame-fish-space">
+            <div class="minigame-fish-space-text">SPACE</div>
+            <div class="minigame-fish-outerdiv">
+                <div class="minigame-fish-line"></div>
+                <div class="minigame-fish-innerdiv"></div>
+            </div>
+        </div>
+
+
+        <div id="minigame-fish-key_main">
+            <div class="title">정해진 시간 안에 입력하세요!</div>
+            <div class="minigame-fish-key_box">
+                <ul id="minigame-fish-key-1">A</ul>
+                <ul id="minigame-fish-key-2">A</ul>
+                <ul id="minigame-fish-key-3">A</ul>
+                <ul id="minigame-fish-key-4">W</ul>
+                <ul id="minigame-fish-key-5">A</ul>
+                <ul id="minigame-fish-key-6">D</ul>
+                <div class="minigame-fish-key_box_2">
+                    <ul id="minigame-fish-2_key-1">A</ul>
+                    <ul id="minigame-fish-2_key-2">A</ul>
+                    <ul id="minigame-fish-2_key-3">A</ul>
+                    <ul id="minigame-fish-2_key-4">W</ul>
+                    <ul id="minigame-fish-2_key-5">A</ul>
+                    <ul id="minigame-fish-2_key-6">D</ul>
+                </div>
+            </div>
+            <div class="minigame-fish-time_bar"></div>
+        </div>
+
+        <div id="minigame-fish-wait_fish">
+            <div class="wait_fish-box">
+                <img class="wait_fish-img" src="./assets/minigame/fish/fishing.png">
+            </div>
+            <kbd>BACKSPACE</kbd>를 눌러 취소
+        </div>
+    </div>
+
+    <!-- 알림 Notify -->
+    <div id="mapNotify-main">
+    </div>
+
+    <!-- 투표 모니터 -->
+    <div id="vote-main">
+        <section class="vote-side">
+            <span>투표 창</span>
+            <img class="vote-arrow" onclick="voteScreen.toggle()" src="./assets/voitemoniter/right-arrow-svgrepo-com.svg">
+        </section>
+
+        <div class="vote-title">조사 할 플레이어를 투표하세요.</div>
+
+        <section class="vote-list">
+            <div class="vote-player check">
+                <div class="vote-player-name">도오미</div>
+                <section>
+                    <img class="vote-player-avatar" src="./assets/logo/domi.png">
+                    <div class="vote-player-checks">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </section>
+            </div>
+            <div class="vote-player ">
+                <div class="vote-player-name">도오미</div>
+                <section>
+                    <img class="vote-player-avatar" src="./assets/logo/domi.png">
+                    <div class="vote-player-checks">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section class="vote-bottom-list">
+            <button class="vote-skip-button">건너뛰기</button>
+            <div class="vote-skips">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 사망 notify -->
+    <div id="death-notify">
+        <img class="death-img" src="./assets/deathNotify/skull-and-bones-svgrepo-com.svg">
+        <div class="death-title">사망</div>
+        <div class="death-subtext">당신은 죽었습니다. 관전자 입니다.</div>
+    </div>
+
+    <!-- 로비 -->
+    <div id="lobby-screen">
+        <header class="lobby-header">
+            <button class="active" id="lobby-ready">준비</button>
+            <button class="exit">종료</button>
+        </header>
+
+        <div class="lobby-content">
+            <span class="players-text">플레이어 목록</span>
+            <section class="lobby-players">
+                <div class="player-box">
+                    <img class="player-avater" src="./assets/logo/domi.png">
+                    <span class="player-status">준비안함</span>
+                    <div class="player-name">어쩔나인</div>
+                </div>
+            </section>
+        </div>
+        
+        <div class="lobby-chat">
+            <section class="lobby-chat-content">
+                <!-- <div><span>도미</span>: </div> -->
+            </section>
+
+            <input class="lobby-chat-input" placeholder="채팅" type="text">
+        </div>
+
+        <!-- 게임 시작준비 -->
+        <div class="lobby-ready-screen">
+            <span class="count" id="ready-start-count">1</span>
+            <span id="ready-start-text">게임을 시작합니다.</span>
+        </div>
+
+        <!-- 안내 -->
+        <!-- <div class="lobby-alert">
+            경기게임마이스터고 지원을 위한 포트폴리오 입니다.</br>
+        </div> -->
+    </div>
+
+    <!-- 게임 결과 -->
+    <div id="gameresult-screen">
+        <div class="gameresult-animatetext">GAME OVER</div>
+        <div class="gameresult-background"></div>
+        <section class="gameresult-list">
+            <div class="gameresult-list-status win citizen">시민<div>WIN</div></div>
+            <div class="gameresult-list-time">GAME TIME<span>30:09</span></div>
+            <!-- 마피아는 그라데이션 빨간색으로 -->
+            <div class="gameresult-list-status right mafia">마피아<div>LOSS</div></div>
+        </section>
+
+        <!-- <div class="gameresult-alert"></div> -->
+        <button class="gameresult-close" onclick="GameResult.close()">닫기</button>
+    </div>
+    
+    <!-- 로그인 관련 -->
+    <div id="intro-screen">
+        <div id="intro-progress-text">서버에 접속하려면 아무 키나 누르세요.</div>
+
+        <section class="intro-buttons">
+            <button class="orange"><img src="./assets/intro/svg/Logout.svg"><span>로그아웃</span></button>
+            <button class="red"><img src="./assets/intro/svg/Exit.svg"><span>나가기</span></button>
+        </section>
+    </div>
+    <div id="disconnect-screen">
+        <div class="disconnect-box">
+            <img class="disconnect-icon" src="./assets/intro/svg/disconnect.svg">
+            <div class="disconnect-title">서버 연결끊김</div>
+
+            <div class="disconnect-content">빈공간</div>
+
+            <div class="disconnect-button">종료하기</div>
+        </div>
+    </div>
+</body>
+</html>

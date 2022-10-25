@@ -1,0 +1,358 @@
+#itemshop-main {
+    position: fixed;
+
+    width: 80vw;
+    height: 80vh;
+
+    max-width: 1300px;
+    max-height: 800px;
+
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.95);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    top: 50px;
+    left: 50px;
+
+    box-sizing: border-box;
+    border: 2px solid transparent;
+    border-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(99, 57, 23, 0.8) 100%);
+    border-image-slice: 1;
+
+    display: none;
+}
+
+#itemshop-main > .itemshop-header {
+    position: relative;
+    
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+#itemshop-main > .itemshop-header > .itemshop-header-title {
+    font-family: 'SpoqaHanSansNeo-Bold';
+    
+    color: white;
+    font-size: 25px;
+
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+#itemshop-main > .itemshop-header > .itemshop-header-menu {
+    position: relative;
+    
+    width: max-content;
+    height: 35px;
+
+    display: flex;
+
+    border-bottom: 1px solid rgba(255, 255, 255, .15);
+
+    overflow: hidden;
+}
+
+#itemshop-main > .itemshop-header > .itemshop-header-close {
+    height: 26px;
+    box-sizing: border-box;
+
+    margin-top: 10px;
+    margin-right: 10px;
+
+    color: white;
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+#itemshop-main > .itemshop-header > .itemshop-header-menu > button {
+    width: 100px;
+    height: 100%;
+    box-sizing: border-box;
+
+    font-size: 14px;
+    color: white;
+
+    background: transparent;
+
+    border: none;
+    border-right: 1px solid transparent;
+    border-bottom: 1px solid white;
+    border-image: linear-gradient( to bottom , white, rgba(255, 255, 255, .15) ) 1 100%;
+
+    cursor: pointer;
+}
+
+#itemshop-main > .itemshop-header > .itemshop-header-menu > button:first-child {
+    border-left: 1px solid transparent;
+}
+
+#itemshop-main > .itemshop-header > .itemshop-header-menu > button:hover {
+    text-shadow: 0 0 10px rgba(255, 255, 255, .8);
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(255,255,255,0.15) 100%);
+}
+
+#itemshop-main > .itemshop-header > .itemshop-header-menu > button.active {
+    box-shadow: 0 0 10px rgba(255, 255, 255, .6);
+    text-shadow: 0 0 10px rgba(255, 255, 255, .8);
+    background: transparent;
+    font-size: 18px;
+    z-index: 1;
+}
+
+/* 콘텐츠 */
+#itemshop-main > .itemshop-content {
+    position: relative;
+
+    width: 100%;
+    height: calc(100% - 50px - 10px);
+
+    margin-bottom: 10px;
+    padding: 0 10px;
+    box-sizing: border-box;
+
+    overflow: auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#itemshop-main > .itemshop-content > .itemshop-textline {
+    display: flex;
+    align-items: center;
+}
+
+#itemshop-main > .itemshop-content > .itemshop-textline:not(:first-child) {
+    margin-top: 2px;
+}
+
+#itemshop-main > .itemshop-content > .itemshop-textline > span:first-child {
+    color: white;
+
+    min-width: max-content;
+
+    margin-right: 10px;
+}
+
+#itemshop-main > .itemshop-content > .itemshop-textline > span:not(:first-child) {
+    display: block;
+
+    width: 100%;
+    height: 1px;
+
+    margin: 0 auto;
+
+    background: linear-gradient(to left, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.3) 100%);
+}
+
+#itemshop-main > .itemshop-content > .itemshop-itemlist {
+    position: relative;
+    
+    width: 100%;
+    height: max-content;
+}
+
+#itemshop-main > .itemshop-content > .itemshop-itemlist > .itemshop-itemlist-item {
+    position: relative;
+
+    width: max-content;
+    height: 95px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    box-sizing: border-box;
+    padding: 6px;
+
+    float: left;
+}
+
+#itemshop-main > .itemshop-content > .itemshop-itemlist > .itemshop-itemlist-item:hover {
+    background: rgba(255, 255, 255, .15);
+}
+
+#itemshop-main > .itemshop-content > .itemshop-itemlist > .itemshop-itemlist-item > .itemshop-itemlist-item-icon {
+    width: 56px;
+    height: 56px;
+    
+    border: 2px solid white;
+}
+
+#itemshop-main > .itemshop-content > .itemshop-itemlist > .itemshop-itemlist-item > .itemshop-itemlist-item-price {
+    color: white;
+    font-size: 16px;
+    
+    margin-top: 3px;
+}
+
+/* 스킬 설명박스 */
+
+#itemshop-helpbox {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    transform: translate(15px,15px);
+
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, .75);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3px);
+
+    box-sizing: border-box;
+    padding: 5px 10px;
+
+    display: none;
+}
+
+#itemshop-helpbox > .itemshop-helpbox-iteminfo {
+    display: flex;
+
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    align-items: center;
+}
+
+#itemshop-helpbox > .itemshop-helpbox-iteminfo > .itemshop-helpbox-iteminfo-img {
+    width: 50px;
+    height: 50px;
+}
+
+#itemshop-helpbox > .itemshop-helpbox-iteminfo > .itemshop-helpbox-iteminfo-texts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin-left: 5px;
+}
+
+#itemshop-helpbox > .itemshop-helpbox-iteminfo > .itemshop-helpbox-iteminfo-texts > .skillT {
+    font-size: 12px;
+    color: rgb(88, 88, 88);
+}
+
+#itemshop-helpbox > .itemshop-helpbox-iteminfo > .itemshop-helpbox-iteminfo-texts > .nameT {
+    font-family: 'SpoqaHanSansNeo-Bold';
+    font-size: 20px;
+
+    line-height: 18px;
+}
+
+#itemshop-helpbox > .itemshop-helpbox-explain {
+    color: rgb(80, 80, 80);
+    font-size: 13px;
+
+    margin-top: 3px;
+
+    height: max-content;
+    max-height: calc(100% - 60px - 5px);
+
+    overflow: hidden;
+}
+
+/* 구매 재확인 창 */
+#itemshop-main > .itemshop-checkbuy {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    background: rgba(50, 50, 50, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 2;
+}
+
+#itemshop-main > .itemshop-checkbuy > .itemshop-checkbuy-title {
+    color: white;
+
+    font-family: 'SpoqaHanSansNeo-Bold';
+    font-size: 30px;
+}
+
+#itemshop-main > .itemshop-checkbuy > .itemshop-checkbuy-buttons {
+    margin-top: 5px;
+
+    display: flex;
+}
+
+#itemshop-main > .itemshop-checkbuy > .itemshop-checkbuy-buttons > button {
+    background: rgba(255, 255, 255, .1);
+    color: white;
+    font-size: 18px;
+    
+    width: 150px;
+    height: 35px;
+    border: none;
+
+    cursor: pointer;
+}
+
+#itemshop-main > .itemshop-checkbuy > .itemshop-checkbuy-buttons > button:hover {
+    background: rgba(255, 255, 255, .15);
+}
+
+#itemshop-main > .itemshop-checkbuy > .itemshop-checkbuy-buttons > button:first-child {
+    margin-right: 10px;
+}
+
+/* 알림창 */
+#itemshop-main > .itemshop-notify {
+    position: absolute;
+
+    right: 0;
+    bottom: 25px;
+
+    width: max-content;
+    height: max-content;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    overflow: hidden;
+}
+
+#itemshop-main > .itemshop-notify > .itemshop-notify-box {
+    position: relative;
+
+    width: max-content;
+    height: 43px;
+
+    margin-top: 3px;
+
+    background: rgba(206, 53, 53, 0.3);
+    
+    font-size: 16px;
+    color: white;
+
+    padding: 0 10px;
+
+    display: flex;
+    align-items: center;
+
+    transition: 250ms all;
+}
+
+#itemshop-main > .itemshop-notify > .itemshop-notify-box > img {
+    height: 30px;
+
+    margin-right: 10px;
+}
