@@ -32,3 +32,6 @@ or
 ```
 npm run make
 ```
+</br>
+
+``/dist`` 경로에 빌드 됩니다.
